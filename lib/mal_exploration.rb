@@ -1,6 +1,8 @@
-require "mal_exploration/version"
+require 'open-uri'
+require 'nokogiri'
+require 'pry'
 
-module MalExploration
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require_relative "mal_exploration/version"
+require_relative "mal_exploration/cli"
+require_relative "mal_exploration/anime"
+require_relative "mal_exploration/scraper"

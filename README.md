@@ -1,8 +1,6 @@
 # MalExploration
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/mal_exploration`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+The user will be able to use the program to explore top 10 anime in each of the 4 categories. The user can then select whichever they are interested to get a synopsis of the anime.
 
 ## Installation
 
