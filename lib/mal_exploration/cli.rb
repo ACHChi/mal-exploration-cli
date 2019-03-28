@@ -9,7 +9,7 @@ class MalExploration::CLI
 
   def topten
     puts ""
-    puts "What number top animes would you like to see? 1-10, 11-20, 21-30, 31-40 or 41-50?"
+    puts "What number top animes would you like to see? enter 1 for 1-10, 11 for 11-20, 21 for 21-30 etc"
     input = gets.strip.to_i
 
     print_animes(input)
