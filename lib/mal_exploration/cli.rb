@@ -8,12 +8,16 @@ class MalExploration::CLI
 
   def topten
     puts ""
-    puts "What number top animes would you like to see? enter 1 for 1-10, 11 for 11-20, 21 for 21-30 etc"
+    puts "What number top animes would you like to see? enter 1 for 1-10, 11 for 11-20, 21 for 21-30 up to 50"
     input = gets.strip.to_i
-
+    if !input.between?(1,50)
+      topten
+    end
     print_animes(input)
     input2 = 0
-    while input2 < input || input2 > input+9
+    max = input+9 > 50 ? 50 : input+9
+    while !input2.between?(input, max)
+   #while input2 < input || input2 > input+9
       puts ""
       puts "What anime would you like more information on?"
       input2 = gets.strip.to_i
