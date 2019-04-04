@@ -4,7 +4,6 @@ class MalExploration::CLI
     MalExploration::Scraper.new.make_animes
     puts "Welcome to My Anime List Explorer"
     topten
-    goodbye
   end
 
   def topten
@@ -13,20 +12,22 @@ class MalExploration::CLI
     input = gets.strip.to_i
 
     print_animes(input)
-    puts ""
-    puts "What anime would you like more information on?"
-    input = gets.strip
-
-    anime = MalExploration::Anime.find(input.to_i)
-
+    input2 = 0
+    while input2 < input || input2 > input+9
+      puts ""
+      puts "What anime would you like more information on?"
+      input2 = gets.strip.to_i
+    end
+    anime = MalExploration::Anime.find(input2)
     print_anime(anime)
+    goodbye
   end
 
   def goodbye
     puts "Would you like to explore more? Enter Y or N"
     input = gets.strip.downcase
     if input == "y"
-      call
+      topten
     elsif input == "n"
       puts ""
       puts "Thank you! Have a great day!"
@@ -40,7 +41,7 @@ class MalExploration::CLI
 
   def print_animes(from_number)
     puts ""
-    puts "---------- Animes #{from_number} - #{from_number+9} ----------"
+    puts "---------- Animes Rank #{from_number} - #{from_number+9} ----------"
     puts ""
     MalExploration::Anime.all[from_number-1, 10].each.with_index(from_number) do |anime, index|
       puts "#{index}. #{anime.title} - #{anime.score}"
@@ -48,11 +49,12 @@ class MalExploration::CLI
   end
 
   def print_anime(anime)
-    puts "#{anime.title} "
-    puts "---------------------"
-    puts "#{anime.info} "
-    puts "-----------------------------"
-    puts "#{anime.website}"
+    puts ""
+    puts "        #{anime.title}"
+    puts "--------------------------------"
+    puts "#{anime.info}"
+    puts "--------------------------------"
+    puts "#{anime.web}"
     puts ""
   end
 

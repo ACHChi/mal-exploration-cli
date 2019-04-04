@@ -1,21 +1,26 @@
 class MalExploration::Anime
 
-  attr_accessor :title, :score, :info, :website, :doc
+  attr_accessor :title, :score, :info, :web
 
   @@all = []
 
   def self.new_from_index_page(r)
     self.new(
-      r.css("a .hoverinfo_trigger fl-l fs14 fw-b").text,
-      r.css("span.text on").text,
-      r.css("div .information di-ib mt4").text
+      # r.css("a .hoverinfo_trigger fl-l fs14 fw-b").text,
+      # r.css("span.text on").text,
+      # r.css("div .information di-ib mt4").text
+      r.css("td.title.al.va-t.word-break > div > div.di-ib.clearfix a.hoverinfo_trigger").text,
+      r.css("td.score.ac.fs14 > div > span").text,
+      r.css("td.title.al.va-t.word-break > div > div.information.di-ib.mt4").text,
+      r.css("td.title.al.va-t.word-break > div > div.di-ib.clearfix a.hoverinfo_trigger @href").text.strip
       )
   end
 
-  def initialize(title = nil, score = nil, info = nil)
+  def initialize(title = nil, score = nil, info = nil, web = nil)
     @title = title
     @score = score
     @info = info
+    @web = web
     @@all << self
   end
 
@@ -28,7 +33,8 @@ class MalExploration::Anime
   end
 
   def website
-    @website ||= Nokogiri::HTML(open("https://myanimelist.net/topanime.php")).css("a.icon-watch ml8 herf").text
+    element = Nokogiri::HTML(open("https://myanimelist.net/topanime.php")).css("a.hoverinfo_trigger[href]")
+    @website ||= element['href']
   end
 
 

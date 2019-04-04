@@ -5,7 +5,9 @@ class MalExploration::Scraper
   end
 
   def scrape_animes_index
-   self.get_page.css("div.pb12 tr.ranking-list")
+    # get_page.css("div.pb12 tr.ranking-list")
+    get_page.css("tr.ranking-list")
+    #content > div.pb12 > table > tbody > tr:nth-child(2)
   end
 
   def make_animes
